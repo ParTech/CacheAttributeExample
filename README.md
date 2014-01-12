@@ -3,7 +3,7 @@ CacheAttribute Example
 
 Description
 -----------
-This example shows how to implement caching on class methods without the need to modify any logic within the method.  
+This example of how to implement caching on class methods without the need to modify any logic within the method.  
 
 It works by adding a CacheAttribute to the class method that needs to be cached.  
 Then Castle DynamicProxy is used to create a proxy class that intercepts any invocations of the class members and applies caching to the methods that implement the CacheAttribute.
