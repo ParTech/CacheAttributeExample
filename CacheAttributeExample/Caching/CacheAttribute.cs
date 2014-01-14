@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace CacheAttributeExample.Caching
+﻿namespace CacheAttributeExample.Caching
 {
+    using System;
+
     /// <summary>
     /// Method attribute indicating caching should be applied to a method.
     /// </summary>
@@ -9,7 +9,17 @@ namespace CacheAttributeExample.Caching
     public class CacheAttribute : Attribute
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CacheAttribute" /> class.
+        ///     Initializes a new instance of the <see cref="CacheAttribute" /> class.
+        ///     CacheKey will be auto-generated.
+        /// </summary>
+        /// <param name="expiration">The expiration in seconds.</param>
+        public CacheAttribute(long expiration)
+            : this(null, expiration)
+        {
+        }
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="CacheAttribute" /> class.
         /// </summary>
         /// <param name="cacheKey">The cache key.</param>
         /// <param name="expiration">The expiration in seconds.</param>
@@ -20,7 +30,7 @@ namespace CacheAttributeExample.Caching
         }
 
         /// <summary>
-        /// Gets or sets the expiration in seconds
+        /// Gets or sets the expiration in seconds.
         /// </summary>
         public long Expiration { get; set; }
 

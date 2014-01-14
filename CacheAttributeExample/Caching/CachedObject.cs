@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace CacheAttributeExample.Caching
+﻿namespace CacheAttributeExample.Caching
 {
+    using System;
+
     /// <summary>
     /// Represents a cached object
     /// </summary>
@@ -10,10 +10,11 @@ namespace CacheAttributeExample.Caching
         /// <summary>
         /// Initializes a new instance of the <see cref="CachedObject" /> class.
         /// </summary>
-        /// <param name="key">The cache key.</param>
         /// <param name="obj">The object that needs to be cached.</param>
+        /// <param name="key">The cache key.</param>
         /// <param name="expiration">The expiration in seconds.</param>
-        public CachedObject(string key, object obj, long expiration)
+        /// <exception cref="ArgumentNullException"></exception>
+        public CachedObject(object obj, string key, long expiration)
         {
             ArgumentNotNull(key, "key");
             ArgumentNotNull(obj, "obj");
@@ -22,18 +23,6 @@ namespace CacheAttributeExample.Caching
             this.Key = key;
             this.Object = obj;
             this.Expiration = DateTime.Now.AddSeconds(expiration);
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CachedObject"/> class.
-        /// </summary>
-        /// <param name="obj">The object that needs to be cached.</param>
-        /// <param name="attribute">The attribute that contains the caching parameters.</param>
-        public CachedObject(object obj, CacheAttribute attribute)
-            : this(attribute.CacheKey, obj, attribute.Expiration)
-        {
-            ArgumentNotNull(obj, "obj");
-            ArgumentNotNull(attribute, "attribute");
         }
 
         /// <summary>
